@@ -4,7 +4,7 @@
 
 KForge is a virtual machine appliance running a customized version of KDE neon Developer Edition, designed to be ready for developing KDE Plasma and KDE applications from the word "Go". While KDE neon Developer Edition comes with extra components to make building KDE software easier, KForge comes with a full suite of KDE development tools preinstalled and ready to be used.
 
-KForge comes in two variants - the virtual machine appliance itself, and a setup script that can be ran on a KDE neon Developer Edition VM to turn it into KForge. The VM disk image can be imported into VirtualBox. It takes a while to download but is already fully prepared for use. The scripts are quicker to download but require that you install KDE neon Developer Edition yourself, and so are more labor-intensive.
+KForge comes in two variants - the virtual machine appliance itself, and a setup script that can be ran on a KDE neon Developer Edition VM to turn it into KForge. The VM appliance is designed for use with VirtualBox. It takes a while to download but is already fully prepared for use. The scripts are quicker to download but require that you install KDE neon Developer Edition yourself, and so are more labor-intensive.
 
 Due to GitHub's file size limitations, the full VM image has been compressed using LZ4, and then split into 1.8 GiB chunks. Since downloading, concatenating, and decompressing these chunks can be somewhat of an ordeal, there's also will be a download script included with KForge that will automatically do the whole job for you and leave you with the finished disk image.
 

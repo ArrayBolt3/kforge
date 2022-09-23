@@ -4,9 +4,9 @@
 
 KForge is a virtual machine appliance running a customized version of KDE neon Developer Edition, designed to be ready for developing KDE Plasma and KDE applications from the word "Go". While KDE neon Developer Edition comes with extra components to make building KDE software easier, KForge comes with a full suite of KDE development tools preinstalled and ready to be used. The entire source code of KDE Plasma is preloaded onto the VM, and even built into binaries, making it so that you can get started hacking at the code almost immediately.
 
-KForge comes in two variants - the virtual machine disk image itself, and a pair of setup scripts that can be ran on a KDE neon Developer Edition VM to turn it into KForge. The VM disk image can be imported into virt-manager or GNOME Boxes, or you can convert it to a VirtualBox disk image and run it there. It's most useful for people who have Internet connections that work faster than their computers. The scripts take a long time to run and require a lot of computing power, but theoretically use less network bandwidth than the preinstalled VM, and are therefore better for people with fast computers and slower Internet connections. (Of course, if you happen to be blessed with both a fast computer and a fast Internet connection, then you can use either one.)
+KForge comes in two variants - the virtual machine appliance itself, and a setup script that can be ran on a KDE neon Developer Edition VM to turn it into KForge. The VM disk image can be imported into VirtualBox. It takes a while to download but is already fully prepared for use. The scripts are quicker to download but require that you install KDE neon Developer Edition yourself, and so are more labor-intensive.
 
-Due to GitHub's file size limitations, the full VM image has been compressed using LZ4, and then split into 1.8 GiB chunks. Since downloading, concatenating, and decompressing these chunks can be somewhat of an ordeal, there's also a download script included with KForge that will automatically do the whole job for you and leave you with the finished disk image.
+Due to GitHub's file size limitations, the full VM image has been compressed using LZ4, and then split into 1.8 GiB chunks. Since downloading, concatenating, and decompressing these chunks can be somewhat of an ordeal, there's also will be a download script included with KForge that will automatically do the whole job for you and leave you with the finished disk image.
 
 ## Disclaimers
 
@@ -38,25 +38,21 @@ That's it! You're now ready to begin development.
 1. Download KDE neon Developer Edition from here: https://files.kde.org/neon/images/developer/current/ Make sure to download the sha256sum file (or the .sig file if you want to be really cautious) and use it to verify the ISO file before creating a VM with it.
 2. Using your virtualization software of choice, create a KDE neon VM. **It is highly recommended that you provide the VM with at least 8 GiB of RAM and 128 GiB of disk space.**
 3. Once you have installed KDE neon, clone the KForge repository to your virtual machine with `git clone https://github.com/ArrayBolt3/KForge.git`.
-4. Run `cd KForge && ./KForge1.sh`. You will be asked for the VMs password, possibly multiple times, depending on how long it takes for the first stage of VM preparation to finish. You will also have to press "y" at least once during the setup, so it's not fully unattended (yet). When the first stage of VM preparation has finished, the VM will automatically reboot.
+4. Run `cd KForge && ./KForgeInstaller.sh`. You will be asked for the VMs password, possibly multiple times, depending on how long it takes for the first stage of VM preparation to finish. You will also have to press "y" at least once during the setup, so it's not fully unattended (yet). When the VM preparation has finished, the VM will automatically reboot.
 5. When the VM finishes rebooting, log in, open System Settings, search for "File" and open "File Search". Then exclude the ~/kde directory from file indexing.
-6. Open a terminal in the KForge directory, and run `./KForge2.sh`. This script will take a *while* to finish, as it installs build dependencies, and then clones and builds KDE Plasma. Depending on the speed of your machine, it may be some hours before the build finishes. You will again be asked for your VM password, probably at least twice.
-7. When the script finishes, log out of KDE Plasma. In the list of sessions, you should now see an option to boot into your development build of Plasma. Log in to one of these sessions to verify that everything is working right.
 
 If all goes as planned, you're done!
 
 ## Using KForge
 
-The KDE source code is stored in a number of folders under ~/kde/src. Each KDE component has a folder containing its code and files. For instance, if you want to edit the source code for KWin, you go to ~/kde/src/kwin, and find the file you want to work on.
-
-Once you've made your changes, the build process is managed by kdesrc-build. Since KDE neon is still based on Ubuntu 20.04, the default compiler is GCC 9, which isn't new enough to build all components of KDE (most notably I found KWin failed to build with GCC 9). However, GCC 10 is also installed. To ensure that everything builds properly, you currently need to specifically tell CMake (the build system kdesrc-build wields behind the scenes) to use GCC 10. To do this, any time you run kdesrc-build, you should run it as `CXX=/usr/bin/g++-10 kdesrc-build <options>`. There may be a way to set GCC 10 as the default compiler for CMake, but currently this isn't implemented. (Probably a simple variable export in .bashrc will do the trick, though I haven't tested this and my Bash skills aren't sufficiently up to par for me to know if that will work.)
+The KDE software build process is managed by kdesrc-build. Since KDE neon is still based on Ubuntu 20.04, the default compiler is GCC 9, which isn't new enough to build all components of KDE (most notably I found KWin failed to build with GCC 9). However, GCC 10 is also installed. To ensure that everything builds properly, you currently need to specifically tell CMake (the build system kdesrc-build wields behind the scenes) to use GCC 10. To do this, any time you run kdesrc-build, you should run it as `CXX=/usr/bin/g++-10 kdesrc-build <options>`. There may be a way to set GCC 10 as the default compiler for CMake, but currently this isn't implemented. (Probably a simple variable export in .bashrc will do the trick, though I haven't tested this and my Bash skills aren't sufficiently up to par for me to know if that will work.)
 
 Documentation on how to use kdesrc-build is here: https://docs.kde.org/trunk5/en/kdesrc-build/kdesrc-build/index.html Some quick commands that will come in handy:
 
+* To build a KDE component and stuff it depends on for the first time (or update the source and rebuild it): `CXX=/usr/bin/g++-10 kdesrc-build <kdecomponent>`
 * To rebuild a project quickly for testing a change you just made: `CXX=/usr/bin/g++-10 kdesrc-build --no-src --no-include-dependencies <kdecomponent>`
-* To update the source of a component and fully rebuild it and stuff it depends on: `CXX=/usr/bin/g++-10 kdesrc-build <kdecomponent>`
 * To discard any changes you've made to a component and rebuild it "clean": `rm -rf ~/kde/src/<kdecomponent> && CXX=/usr/bin/g++-10 kdesrc-build <kdecomponent>`
-* To scrap EVERYTHING and start from scratch (useful for if you get your stuff really scrambled, like if your computer crashes mid-build):
+* To scrap EVERYTHING and start from scratch, building the full KDE Plasma stack (useful for if you get your stuff really scrambled, like if your computer crashes mid-build):
     mv ~/kde/src/kdesrc-build ~/kdesrc-build-bak
     rm -rf ~/kde
     mkdir -p ~/kde/src

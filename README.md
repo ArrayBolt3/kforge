@@ -6,7 +6,7 @@ KForge is a virtual machine appliance running a customized version of KDE neon D
 
 KForge comes in two variants - the virtual machine appliance itself, and a setup script that can be ran on a KDE neon Developer Edition VM to turn it into KForge. The VM appliance is designed for use with VirtualBox. It takes a while to download but is already fully prepared for use. The scripts are quicker to download but require that you install KDE neon Developer Edition yourself, and so are more labor-intensive.
 
-Due to GitHub's file size limitations, the full VM image has been compressed using LZ4, and then split into 1.8 GiB chunks. Since downloading, concatenating, and decompressing these chunks can be somewhat of an ordeal, there's also will be a download script included with KForge that will automatically do the whole job for you and leave you with the finished disk image.
+Due to GitHub's file size limitations, the full VM appliance has been split into 1.8 GiB chunks. Since downloading and concatenating these chunks can be somewhat of an hassle, there's also will be a download script included with KForge that will automatically do the whole job for you and leave you with the finished disk image.
 
 ## Disclaimers
 
@@ -20,18 +20,15 @@ For those who are still with me, proceed.
 
 ### Downloading the VM
 
-NOTE: The VM has not yet been uploaded, nor has the download script been created and added to the repo. If you're reading this, skip ahead to the "Using the prep scripts" section.
-
 1. Clone the KForge repository to your physical machine with `git clone https://github.com/ArrayBolt3/KForge.git`.
-2. Open a terminal in the KForge folder created when you did the clone.
-3. Run `./KForgeDL.sh`, and wait. It may take a while, especially if your connection is less than speedy, as the full VM image is very big, and has to be downloaded, fused together, and decompressed. When the command finishes, you will be left with a file named "KForge.qcow2" in your Downloads folder.
-4. (For VirtualBox users) Run `qemu-img convert -O vdi KForge.qcow2 KForge.vdi` to convert the qcow2 image to a VirtualBox-compatible .vdi file. (Note that you will need QEMU installed to do this.)
-5. Import the disk image into your virtualization software of choice. **It is highly recommended that you provide the VM with at least 8 GiB of RAM.**
-6. Log into the VM. The username is "KForge", the password is a single lowercase "z".
-7. Once the VM is up and running, log in open a terminal inside the VM and run `sudo apt update && sudo apt -y full-upgrade`.
-8. Finally, run `CXX=/usr/bin/g++-10 kdesrc-build <kdecomponent>`, replacing `<kdecomponent>` with the name of the KDE component you want to start work on. This will update the source code for this KDE component and rebuild it, preparing it for use.
+2. Open a terminal in the kforge folder created when you did the clone.
+3. Run `./KForgeDL.sh`, and wait. It may take a while, especially if your connection is less than speedy, as the full VM image is very big, and has to be downloaded, fused together, and decompressed. When the command finishes, you will be left with a file named "KForge.ova" in the kforge folder.
+4. Using VirtualBox, import the KForge.ova appliance.
+5. Power on the VM. It will log in automatically and grant you passwordless sudo access.
+6. Once the VM is up and running, log in open a terminal inside the VM and run `sudo apt update && sudo apt -y full-upgrade`.
+7. Finally, run `CXX=/usr/bin/g++-10 kdesrc-build <kdecomponent>`, replacing `<kdecomponent>` with the name of the KDE component you want to start work on. This will update the source code for this KDE component and rebuild it, preparing it for use.
 
-That's it! You're now ready to begin development.
+That's it! You're now ready to begin development. Should you need to log in for some reason (for instance, switching to a TYY), the password is a single lowercase "z".
 
 ### Using the prep scripts
 

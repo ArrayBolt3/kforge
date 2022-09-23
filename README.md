@@ -20,7 +20,7 @@ For those who are still with me, proceed.
 
 ### Downloading the VM
 
-NOTE: The VM has not yet been uploaded. If you're reading this, skip ahead to the "Using the prep scripts" section.
+NOTE: The VM has not yet been uploaded, nor has the download script been created and added to the repo. If you're reading this, skip ahead to the "Using the prep scripts" section.
 
 1. Clone the KForge repository to your physical machine with `git clone https://github.com/ArrayBolt3/KForge.git`.
 2. Open a terminal in the KForge folder created when you did the clone.

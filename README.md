@@ -22,7 +22,7 @@ For those who are still with me, proceed.
 
 1. Clone the KForge repository to your physical machine with `git clone https://github.com/ArrayBolt3/KForge.git`.
 2. Open a terminal in the kforge folder created when you did the clone.
-3. Run `./KForgeDL.sh`, and wait. It may take a while, especially if your connection is less than speedy, as the full VM image is very big, and has to be downloaded, fused together, and decompressed. When the command finishes, you will be left with a file named "KForge.ova" in the kforge folder.
+3. Run `./KForgeDL.sh`, and wait. It may take a while. When the command finishes, you will be left with a file named "KForge.ova" in the kforge folder.
 4. Using VirtualBox, import the KForge.ova appliance.
 5. Power on the VM. It will log in automatically and grant you passwordless sudo access.
 6. Once the VM is up and running, log in open a terminal inside the VM and run `sudo apt update && sudo apt -y full-upgrade`.

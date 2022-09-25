@@ -52,13 +52,13 @@ Documentation on how to use kdesrc-build is here: https://docs.kde.org/trunk5/en
 * To scrap EVERYTHING and start from scratch, building the full KDE Plasma stack (useful for if you get your stuff really scrambled, like if your computer crashes mid-build):
 
 ```
-mv ~/kde/src/kdesrc-build ~/kdesrc-build-bak  
-rm -rf ~/kde  
-mkdir -p ~/kde/src  
-mv ~/kdesrc-build-bak ~/kde/src/kdesrc-build  
-kdesrc-build --initial-setup                    # When asked to update your .bashrc, answer "n", since it's already been updated once  
-CXX=/usr/bin/g++-10 kdesrc-build plasma-workspace plasma-framework plasma-integration bluedevil powerdevil plasma-nm plasma-pa plasma-thunderbolt plasma-vault plasma-firewall plasma-workspace-wallpapers kdeplasma-addons krunner milou kwin kscreen sddm-kcm plymouth-kcm breeze discover print-manager plasma-sdk kaccounts-integration kaccounts-providers kdeconnect-kde plasma-browser-integration xdg-desktop-portal-kde kde-gtk-config khotkeys kgamma5 breeze-gtk drkonqi phonon --include-dependencies  
-CXX=/usr/bin/g++-10 kdesrc-build plasma-desktop systemsettings ksysguard plasma-disks plasma-systemmonitor ksystemstats kinfocenter kmenuedit --include-dependencies  
+mv ~/kde/src/kdesrc-build ~/kdesrc-build-bak
+rm -rf ~/kde
+mkdir -p ~/kde/src
+mv ~/kdesrc-build-bak ~/kde/src/kdesrc-build
+kdesrc-build --initial-setup                    # When asked to update your .bashrc, answer "n", since it's already been updated once
+CXX=/usr/bin/g++-10 kdesrc-build plasma-workspace plasma-framework plasma-integration bluedevil powerdevil plasma-nm plasma-pa plasma-thunderbolt plasma-vault plasma-firewall plasma-workspace-wallpapers kdeplasma-addons krunner milou kwin kscreen sddm-kcm plymouth-kcm breeze discover print-manager plasma-sdk kaccounts-integration kaccounts-providers kdeconnect-kde plasma-browser-integration xdg-desktop-portal-kde kde-gtk-config khotkeys kgamma5 breeze-gtk drkonqi phonon --include-dependencies
+CXX=/usr/bin/g++-10 kdesrc-build plasma-desktop systemsettings ksysguard plasma-disks plasma-systemmonitor ksystemstats kinfocenter kmenuedit --include-dependencies
 ```
 
 ## License and Copyright Info

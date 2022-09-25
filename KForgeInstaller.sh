@@ -84,15 +84,15 @@ end global
 # Common options that should be set for some KDE modules no matter how
 # kdesrc-build finds them. Do not comment these out unless you know
 # what you are doing.
-include /home/kforge/kde/src/kdesrc-build/kf5-common-options-build-include
+include /home/$USER/kde/src/kdesrc-build/kf5-common-options-build-include
 
 # Qt and some Qt-using middleware libraries. Uncomment if your distribution's Qt
 # tools are too old but be warned that Qt take a long time to build!
-#include /home/kforge/kde/src/kdesrc-build/qt5-build-include
-#include /home/kforge/kde/src/kdesrc-build/custom-qt5-libs-build-include
+#include /home/$USER/kde/src/kdesrc-build/qt5-build-include
+#include /home/$USER/kde/src/kdesrc-build/custom-qt5-libs-build-include
 
 # KF5 and Plasma :)
-include /home/kforge/kde/src/kdesrc-build/kf5-qt5-build-include
+include /home/$USER/kde/src/kdesrc-build/kf5-qt5-build-include
 
 # To change options for modules that have already been defined, use an
 # 'options' block. See kf5-common-options-build-include for an example

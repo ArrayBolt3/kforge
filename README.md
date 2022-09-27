@@ -63,10 +63,4 @@ CXX=/usr/bin/g++-10 kdesrc-build plasma-desktop systemsettings ksysguard plasma-
 
 ## License and Copyright Info
 
-Copyright (c) 2022 Aaron Rainbolt.
-
-The KForge VM is a conglomerate of software under various different licensing terms. Each application is offered under the license terms specified for it.
-
-The files in the KForge Git repository (namely, this file and the accompanying scripts) are licensed under the GNU General Public License, either version 2 of the license, or (at your option) any later version.
-
-The KForge wallpaper featured in the downloadable KForge VM uses the KDE logo, whose use is restricted as follows: "The KDE logo can be used freely as long as it is not used to refer to projects other than KDE itself. There is no formal procedure to use it. Copying of the KDE Logo is subject to the LGPL copyright license. Trading and branding with the KDE Logo is subject to our trademark licence." (Quoting from https://kde.org/stuff/clipart/) The KForge wallpaper is subject to the same licensing terms.
+See the "COPYRIGHT" file for all copyright information. The repository's main license is the GNU GPL v2 or later.

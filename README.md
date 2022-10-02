@@ -63,4 +63,4 @@ CXX=/usr/bin/g++-10 kdesrc-build plasma-desktop systemsettings ksysguard plasma-
 
 ## License and Copyright Info
 
-See the "COPYRIGHT" file for all copyright information. The repository's main license is the GNU GPL v2 or later.
+See the "COPYRIGHT" file for copyright and licensing information. The repository's main license is the GNU GPL v2 or later.

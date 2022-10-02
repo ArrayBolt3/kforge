@@ -8,6 +8,8 @@ KForge comes in two variants - the virtual machine appliance itself, and a setup
 
 Due to GitHub's file size limitations, the full VM appliance has been split into 1.8 GiB chunks. Since downloading and concatenating these chunks can be somewhat of an hassle, there's also will be a download script included with KForge that will automatically do the whole job for you and leave you with the finished disk image.
 
+KForge is currently in alpha testing - don't expect everything to work right yet.
+
 ## Disclaimers
 
 This is a developer tool. As such, it is designed for people who mostly know what they're doing. These instructions don't clearly spell out all the possible "gotchas" (like being dreadfully careful with the terrifying `rm -rf` command). Since the whole entire system is designed to build and run alpha-quality and pre-alpha-quality code, there are almost certainly many bugs all through this.
@@ -60,6 +62,14 @@ kdesrc-build --initial-setup                    # When asked to update your .bas
 CXX=/usr/bin/g++-10 kdesrc-build plasma-workspace plasma-framework plasma-integration bluedevil powerdevil plasma-nm plasma-pa plasma-thunderbolt plasma-vault plasma-firewall plasma-workspace-wallpapers kdeplasma-addons krunner milou kwin kscreen sddm-kcm plymouth-kcm breeze discover print-manager plasma-sdk kaccounts-integration kaccounts-providers kdeconnect-kde plasma-browser-integration xdg-desktop-portal-kde kde-gtk-config khotkeys kgamma5 breeze-gtk drkonqi phonon --include-dependencies
 CXX=/usr/bin/g++-10 kdesrc-build plasma-desktop systemsettings ksysguard plasma-disks plasma-systemmonitor ksystemstats kinfocenter kmenuedit --include-dependencies
 ```
+
+## Software KForge won't build
+
+While KForge is able to build *almost* all KDE software, there are a few exceptions. The proper build dependencies for the following software are **not** installed in KForge and attempting to build them will result in errors. If you really need to build these, you can install the dependencies into KForge manually.
+
+* Krita. Krita is massive, and as testing KForge requires building vast amounts of KDE software on a regular basis, the extra time that would be needed to build Krita routinely is currently believed to be too much. Additionally, there is already a dedicated Krita build environment known as Krita Devbox, which is available here: https://invent.kde.org/eoinoneill/krita-devbox
+* Kdenlive. As handy and awesome as Kdenlive is, it requires the installation of build dependencies that are potentially problematic due to issues invovling patents (ffmpeg being one of the biggest problems here). It is also seriously big and might be too cumbersome to build on a regular basis.
+* telepathy-accounts-signon. KDE Telepathy is, to the best of my knowledge, unmaintained. You'll probably never need to (or want to) build it. Additionally, not all of the necessary build dependencies for telepathy-accounts-signon are available in KDE neon, making this far more tricky to build than normal.
 
 ## License and Copyright Info
 

@@ -38,7 +38,6 @@ That's it! You're now ready to begin development. Should you need to log in for 
 2. Using your virtualization software of choice, create a KDE neon VM. **It is highly recommended that you provide the VM with at least 8 GiB of RAM and 128 GiB of disk space.**
 3. Once you have installed KDE neon, clone the KForge repository to your virtual machine with `git clone https://github.com/ArrayBolt3/KForge.git`.
 4. Run `cd KForge && ./KForgeInstaller.sh`. You will be asked for the VMs password, possibly multiple times, depending on how long it takes for the first stage of VM preparation to finish. You will also have to press "y" at least once during the setup, so it's not fully unattended (yet). When the VM preparation has finished, the VM will automatically reboot.
-5. When the VM finishes rebooting, log in, open System Settings, search for "File" and open "File Search". Then exclude the ~/kde directory from file indexing.
 
 If all goes as planned, you're done!
 

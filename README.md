@@ -8,7 +8,7 @@ KForge comes in two variants - the virtual machine appliance itself, and a setup
 
 Due to GitHub's file size limitations, the full VM appliance has been split into 1.8 GiB chunks. Since downloading and concatenating these chunks can be somewhat of an hassle, there's also will be a download script included with KForge that will automatically do the whole job for you and leave you with the finished disk image.
 
-KForge is currently in alpha testing - don't expect everything to work right yet.
+KForge is currently in beta testing. Everything should work right, but it's not been thoroughly tested. Bug reports, feedback, and pull requests are all welcome!
 
 ## Disclaimers
 

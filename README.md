@@ -22,7 +22,7 @@ For those who are still with me, proceed.
 
 Info that may help you to be able to use KForge effectively.
 
-* A build dependency for KWin is missing in KForge 2022-10-10, namely libxkbcommon-x11-dev. After importing the OVA appliance or using the KForge installer on a fresh KDE neon Developer Edition VM, please run "sudo apt install libxkbcommon-x11-dev" to ensure that you can build KWin properly. This will be fixed as soon as possible.
+* A build dependency for KWin is missing in KForge 2022-10-10, namely libxkbcommon-x11-dev. After importing and updating the KForge OVA appliance, please run "sudo apt install libxkbcommon-x11-dev" to ensure that you can build KWin properly. This will be fixed as soon as possible. Note that if you use the KForge installer script on a fresh KDE neon Developer Edition VM, this dependency will be automatically installed for you.
 
 ## Getting KForge
 

@@ -2,8 +2,8 @@
 
 # KForge Plasma Setup Script
 
-buildModScript="#!/bin/bash\ncd $1 && mkdir build && cmake -S . -B build && cd build ** make -j4 && sudo make install && cd ../.."
-buildAllScript="#!/bin/bash\nfor srcDir in `ls`; do ./buildMod $srcDir; done"
+buildModScript='#!/bin/bash\ncd $1 && mkdir build && cmake -S . -B build && cd build && make -j4 && sudo make install; cd ~/kplasma'
+buildAllScript='#!/bin/bash\nfor srcDir in `ls`; do ./buildMod $srcDir; done'
 repoList="bluedevil breeze breeze-grub breeze-gtk breeze-plymouth discover drkonqi kactivitymanagerd kde-cli-tools kdecoration kde-gtk-config kdeplasma-addons kgamma5 khotkeys kinfocenter kmenuedit kscreen kscreenlocker ksshaskpass ksystemstats kwallet-pam kwayland-integration kwayland-server kwin kwrited layer-shell-qt libkscreen libksysguard milou oxygen plasma-browser-integration plasma-desktop plasma-disks plasma-firewall plasma-integration plasma-mobile plasma-nano plasma-nm plasma-pa plasma-sdk plasma-systemmonitor plasma-tests plasma-thunderbolt plasma-vault plasma-workspace plasma-workspace-wallpapers plymouth-kcm polkit-kde-agent-1 powerdevil qqc2-breeze-style sddm-kcm systemsettings xdg-desktop-portal-kde"
 
 if [ -e "~/kplasma" ]; then

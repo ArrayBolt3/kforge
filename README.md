@@ -32,7 +32,7 @@ For those who are still with me, proceed.
 
 That's it! You're now ready to begin development. Should you need to log in for some reason (for instance, switching to a TYY), the password is a single lowercase "z".
 
-### Using the prep scripts
+### Using the KForge Installer
 
 1. Download KDE neon Developer Edition from here: https://files.kde.org/neon/images/developer/current/ Make sure to download the sha256sum file (or the .sig file if you want to be really cautious) and use it to verify the ISO file before creating a VM with it.
 2. Using your virtualization software of choice, create a KDE neon VM. **It is highly recommended that you provide the VM with at least 8 GiB of RAM and 128 GiB of disk space.**
@@ -43,9 +43,11 @@ If all goes as planned, you're done!
 
 ## Using KForge
 
-The KDE software build process is managed by kdesrc-build. Since KDE neon is still based on Ubuntu 20.04, the default compiler is GCC 9, which isn't new enough to build all components of KDE (most notably I found KWin failed to build with GCC 9). However, GCC 10 is also installed. To ensure that everything builds properly, you currently need to specifically tell CMake (the build system kdesrc-build wields behind the scenes) to use GCC 10. To do this, any time you run kdesrc-build, you should run it as `CXX=/usr/bin/g++-10 kdesrc-build <options>`. There may be a way to set GCC 10 as the default compiler for CMake, but currently this isn't implemented. (Probably a simple variable export in .bashrc will do the trick, though I haven't tested this and my Bash skills aren't sufficiently up to par for me to know if that will work.)
+### For main development work
 
-Documentation on how to use kdesrc-build is here: https://docs.kde.org/trunk5/en/kdesrc-build/kdesrc-build/index.html Some quick commands that will come in handy:
+The KDE software build process is managed by kdesrc-build. Since KDE neon is still based on Ubuntu 20.04, the default compiler is GCC 9, which isn't new enough to build all components of KDE (most notably I found KWin failed to build with GCC 9). However, GCC 10 is also installed in KForge. To ensure that everything builds properly, you currently need to specifically tell CMake (the build system kdesrc-build wields behind the scenes) to use GCC 10. To do this, run `export CXX=/usr/bin/g++-10` in a shell before beginning to run kdesrc-build. This problem will automatically resolve itself when KDE neon Developer Edition is rebased onto Ubuntu 22.04, rather than Ubuntu 20.04 which is uses currently.
+
+Doocumentation on how to use kdesrc-build is here: https://docs.kde.org/trunk5/en/kdesrc-build/kdesrc-build/index.html Some quick commands that will come in handy:
 
 * To build a KDE component and stuff it depends on for the first time (or update the source and rebuild it): `CXX=/usr/bin/g++-10 kdesrc-build <kdecomponent>`
 * To rebuild a project quickly for testing a change you just made: `CXX=/usr/bin/g++-10 kdesrc-build --no-src --no-include-dependencies <kdecomponent>`
@@ -61,6 +63,16 @@ kdesrc-build --initial-setup                    # When asked to update your .bas
 CXX=/usr/bin/g++-10 kdesrc-build plasma-workspace plasma-framework plasma-integration bluedevil powerdevil plasma-nm plasma-pa plasma-thunderbolt plasma-vault plasma-firewall plasma-workspace-wallpapers kdeplasma-addons krunner milou kwin kscreen sddm-kcm plymouth-kcm breeze discover print-manager plasma-sdk kaccounts-integration kaccounts-providers kdeconnect-kde plasma-browser-integration xdg-desktop-portal-kde kde-gtk-config khotkeys kgamma5 breeze-gtk drkonqi phonon --include-dependencies
 CXX=/usr/bin/g++-10 kdesrc-build plasma-desktop systemsettings ksysguard plasma-disks plasma-systemmonitor ksystemstats kinfocenter kmenuedit --include-dependencies
 ```
+
+### For backport work (or anything else where kdesrc-build doesn't work right)
+
+While kdesrc-build is awesome for lots of usecases, occasionally it's easier to work with the individual Git repos directly. However, in the case of KDE Plasma, there's a *lot* of repos to work with, which can be quite tedious to manage manually. To help deal with this, KForge comes with its own helper tools specifically for working on KDE Plasma in situations where kdesrc-build doesn't work easily (like when backporting bugfixes to earlier versions of Plasma).
+
+To prepare a KDE Plasma build environment, clone the KForge repo, `cd` to it, and then run `./KForgePlasmaSetup.sh <major version>.<minor version>`, replacing `<major version>` and `<minor version>` as appropriate. This will automatically install the helper tools, and will clone and checkout the Git repos. For instance, to prepare a build environment for Plasma 5.24, run `./KPlasmaBackportEnvInstaller.sh 5.24`.
+
+The Plasma source code will be placed under ~/kplasma. The helper scripts "buildMod.sh" and "buildAll.sh" will also be placed in this directory. To build the entire KDE Plasma stack, run `./buildAll` while in the ~/kplasma directory. To build just one module, run `./buildMod <module>`, replacing <module> with the name of the module you want to build (i.e., kwin, plasma-desktop, etc.).
+
+To switch Plasma versions, you can just run the KForgePlasmaSetup.sh script again. This will detect if you already have the source code downloaded, and if so, it will simply checkout a different branch in all of the repos. Note that if you have made changes to the code, they will be preserved, which on the one hand is possibly good, and on the other hand may leave old stuff in your source code. If you need to wipe everything and start from scratch, simply delete the entire ~/kplasma directory and run the KForgePlasmaSetup.sh script again.
 
 ## Software KForge won't build
 

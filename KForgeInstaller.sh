@@ -10,7 +10,7 @@ git clone https://invent.kde.org/sdk/kdesrc-build.git && cd kdesrc-build
 ./kdesrc-build --initial-setup
 source ~/.bashrc
 sudo apt -y build-dep plasma-desktop plasma-workspace kwin phonon4qt5-backend-vlc phonon4qt5-backend-gstreamer breeze-gtk-theme kgamma5 xdg-desktop-portal-kde kaccounts-integration akonadi-server libkscreenlocker5 okular kitinerary kdepim-runtime gwenview kamera kdevelop lokalize kstars minuet kmousetool krfb ark kio-audiocd ffmpegthumbs k3b kwave kajongg kpat signon-kwallet-extension
-sudo apt -y install libqca-qt5-2-dev libavcodec-dev libavutil-dev libavformat-dev libswscale-dev libplymouth-dev g++-10 libxapian-dev libexiv2-dev libboost-thread-dev xsdcxx libxerces-c-dev libxkbcommon-x11-dev
+sudo apt -y install libqca-qt5-2-dev libavcodec-dev libavutil-dev libavformat-dev libswscale-dev libplymouth-dev g++-10 libxapian-dev libexiv2-dev libboost-thread-dev xsdcxx libxerces-c-dev libsensors4-dev libnl-3-dev libnl-cli-3-dev libnl-genl-3-dev libnl-idiag-3-dev libnl-nf-3-dev libnl-route-3-dev libnl-xfrm-3-dev intltool libxcb-dpms0-dev libxkbcommon-x11-dev
 tee << EOF > ~/.config/kdesrc-buildrc
 # This file controls options to apply when configuring/building modules, and
 # controls which modules are built in the first place.

@@ -30,7 +30,7 @@ Info that may help you to be able to use KForge effectively.
 
 1. Clone the KForge repository to your physical machine with `git clone https://github.com/ArrayBolt3/KForge.git`.
 2. Open a terminal in the kforge folder created when you did the clone.
-3. Run `./KForgeDL.sh`, and wait. It may take a while. Eventually you will be shown some SHA256SUM output in the terminal, indicating whether or not the download is corrupted or not. When this info is displayed, press any key to allow the script to proceed to the image assembly step. When the command finishes, you will be left with a file named "KForge.ova" in the kforge folder.
+3. Run `./KForgeDL.sh`, and wait. It may take a while. When the command finishes, you will be left with a file named "KForge.ova" in the kforge folder.
 4. Using VirtualBox, import the KForge.ova appliance.
 5. Power on the VM. It will log in automatically and grant you passwordless sudo access.
 6. Once the VM is up and running, log in open a terminal inside the VM and run `sudo apt update && sudo apt -y full-upgrade`.

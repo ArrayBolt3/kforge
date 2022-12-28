@@ -12,17 +12,20 @@ KForge is currently in beta testing. Everything should work right, but it's not 
 
 ## Disclaimers
 
+***WARNING: READ THIS SECTION BEFORE PROCEEDING LEST YOU DESTROY THINGS.***
+
 This is a developer tool. As such, it is designed for people who mostly know what they're doing. These instructions don't clearly spell out all the possible "gotchas" (like being dreadfully careful with the terrifying `rm -rf` command). Since the whole entire system is designed to build and run alpha-quality and pre-alpha-quality code, there are almost certainly many bugs all through this.
 
-If you don't know what you're doing, or if you don't clearly understand **everything** you read in this guide, **DO NOT USE THIS TOOL OR RUN ANY COMMANDS IN THIS GUIDE.** Running some of these commands in the wrong context could have unintended (and possibly catastrophic) results. Using the tool as a general-purpose operating system is likely to turn out disappointing. If you know what you're doing, none of this will deter you in the slightest. But if reading this gives you second thoughts, listen to them. Turn back now!
+If you don't know what you're doing, or if you don't clearly understand **everything** you read in this guide, **DO NOT USE THIS TOOL OR RUN ANY COMMANDS IN THIS GUIDE.** Running some of these commands in the wrong context could have unintended (and possibly **catastrophic**) results. Using the tool as a general-purpose operating system is likely to turn out disappointing. If reading this gives you second thoughts, listen to them. Turn back now!
 
-For those who are still with me, proceed.
+***YOU HAVE BEEN WARNED. PROCEED AT YOUR OWN RISK.***
 
 ## News
 
 Info that may help you to be able to use KForge effectively.
 
-* A build dependency for KWin is missing in KForge 2022-10-10, namely libxkbcommon-x11-dev. After importing and updating the KForge OVA appliance, please run "sudo apt install libxkbcommon-x11-dev" to ensure that you can build KWin properly. This will be fixed as soon as possible. Note that if you use the KForge installer script on a fresh KDE neon Developer Edition VM, this dependency will be automatically installed for you.
+* KDE Neon Developer Edition has been rebased onto Ubuntu 22.04, which uses a newer version of GCC. It is no longer necessary to set the GCC version when running compilation commands.
+* There's finally an updated KForge appliance! Between a bunch of work and a problem with my Internet, I've not updated this in a while, but it's finally happened. Thanks for your patience!
 
 ## Getting KForge
 
@@ -34,7 +37,7 @@ Info that may help you to be able to use KForge effectively.
 4. Using VirtualBox, import the KForge.ova appliance.
 5. Power on the VM. It will log in automatically and grant you passwordless sudo access.
 6. Once the VM is up and running, log in open a terminal inside the VM and run `sudo apt update && sudo apt -y full-upgrade`.
-7. Finally, run `CXX=/usr/bin/g++-10 kdesrc-build <kdecomponent>`, replacing `<kdecomponent>` with the name of the KDE component you want to start work on. This will update the source code for this KDE component and rebuild it, preparing it for use.
+7. Finally, run `kdesrc-build <kdecomponent>`, replacing `<kdecomponent>` with the name of the KDE component you want to start work on. This will update the source code for this KDE component and rebuild it, preparing it for use.
 
 That's it! You're now ready to begin development. Should you need to log in for some reason (for instance, switching to a TYY), the password is a single lowercase "z".
 
@@ -51,13 +54,11 @@ If all goes as planned, you're done!
 
 ### For main development work
 
-The KDE software build process is managed by kdesrc-build. Since KDE neon is still based on Ubuntu 20.04, the default compiler is GCC 9, which isn't new enough to build all components of KDE (most notably I found KWin failed to build with GCC 9). However, GCC 10 is also installed in KForge. To ensure that everything builds properly, you currently need to specifically tell CMake (the build system kdesrc-build wields behind the scenes) to use GCC 10. To do this, run `export CXX=/usr/bin/g++-10` in a shell before beginning to run kdesrc-build. This problem will automatically resolve itself when KDE neon Developer Edition is rebased onto Ubuntu 22.04, rather than Ubuntu 20.04 which is uses currently.
-
 Doocumentation on how to use kdesrc-build is here: https://docs.kde.org/trunk5/en/kdesrc-build/kdesrc-build/index.html Some quick commands that will come in handy:
 
-* To build a KDE component and stuff it depends on for the first time (or update the source and rebuild it): `CXX=/usr/bin/g++-10 kdesrc-build <kdecomponent>`
-* To rebuild a project quickly for testing a change you just made: `CXX=/usr/bin/g++-10 kdesrc-build --no-src --no-include-dependencies <kdecomponent>`
-* To discard any changes you've made to a component and rebuild it "clean": `rm -rf ~/kde/src/<kdecomponent> && CXX=/usr/bin/g++-10 kdesrc-build <kdecomponent>`
+* To build a KDE component and stuff it depends on for the first time (or update the source and rebuild it): `kdesrc-build <kdecomponent>`
+* To rebuild a project quickly for testing a change you just made: `kdesrc-build --no-src --no-include-dependencies <kdecomponent>`
+* To discard any changes you've made to a component and rebuild it "clean": `rm -rf ~/kde/src/<kdecomponent> && kdesrc-build <kdecomponent>`
 * To scrap EVERYTHING and start from scratch, building the full KDE Plasma stack (useful for if you get your stuff really scrambled, like if your computer crashes mid-build):
 
 ```
@@ -66,8 +67,8 @@ rm -rf ~/kde
 mkdir -p ~/kde/src
 mv ~/kdesrc-build-bak ~/kde/src/kdesrc-build
 kdesrc-build --initial-setup                    # When asked to update your .bashrc, answer "n", since it's already been updated once
-CXX=/usr/bin/g++-10 kdesrc-build plasma-workspace plasma-framework plasma-integration bluedevil powerdevil plasma-nm plasma-pa plasma-thunderbolt plasma-vault plasma-firewall plasma-workspace-wallpapers kdeplasma-addons krunner milou kwin kscreen sddm-kcm plymouth-kcm breeze discover print-manager plasma-sdk kaccounts-integration kaccounts-providers kdeconnect-kde plasma-browser-integration xdg-desktop-portal-kde kde-gtk-config khotkeys kgamma5 breeze-gtk drkonqi phonon --include-dependencies
-CXX=/usr/bin/g++-10 kdesrc-build plasma-desktop systemsettings ksysguard plasma-disks plasma-systemmonitor ksystemstats kinfocenter kmenuedit --include-dependencies
+kdesrc-build plasma-workspace plasma-framework plasma-integration bluedevil powerdevil plasma-nm plasma-pa plasma-thunderbolt plasma-vault plasma-firewall plasma-workspace-wallpapers kdeplasma-addons krunner milou kwin kscreen sddm-kcm plymouth-kcm breeze discover print-manager plasma-sdk kaccounts-integration kaccounts-providers kdeconnect-kde plasma-browser-integration xdg-desktop-portal-kde kde-gtk-config khotkeys kgamma5 breeze-gtk drkonqi phonon --include-dependencies
+kdesrc-build plasma-desktop systemsettings ksysguard plasma-disks plasma-systemmonitor ksystemstats kinfocenter kmenuedit --include-dependencies
 ```
 
 ### For backport work (or anything else where kdesrc-build doesn't work right)

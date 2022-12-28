@@ -32,6 +32,8 @@ Info that may help you to be able to use KForge effectively.
 
 ### Downloading the VM
 
+The KForge appliance is designed for VirtualBox 6.1.40. If using the KForge Appliance with a newer version of VirtualBox, you may need to install a newer version of Guest Additions in order for everything to work right.
+
 1. Clone the KForge repository to your physical machine with `git clone https://github.com/ArrayBolt3/KForge.git`.
 2. Open a terminal in the kforge folder created when you did the clone.
 3. Run `./KForgeDL.sh`, and wait. It may take a while. When the command finishes, you will be left with a file named "KForge.ova" in the kforge folder.
@@ -40,7 +42,7 @@ Info that may help you to be able to use KForge effectively.
 6. Once the VM is up and running, log in open a terminal inside the VM and run `sudo apt update && sudo apt -y full-upgrade`.
 7. Finally, run `kdesrc-build <kdecomponent>`, replacing `<kdecomponent>` with the name of the KDE component you want to start work on. This will update the source code for this KDE component and rebuild it, preparing it for use.
 
-That's it! You're now ready to begin development. Should you need to log in for some reason (for instance, switching to a TYY), the password is a single lowercase "z".
+That's it! You're now ready to begin development. Should you need to log in for some reason (for instance, switching to a TTY), the password is a single lowercase "z".
 
 ### Using the KForge Installer
 

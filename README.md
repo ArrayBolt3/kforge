@@ -87,7 +87,7 @@ To switch Plasma versions, you can just run the KForgePlasmaSetup.sh script agai
 
 ## Software KForge won't build
 
-While KForge is able to build *almost* all KDE software, there are a few exceptions. The proper build dependencies for the following software are **not** installed in KForge and attempting to build them will result in errors. If you really need to build these, you can install the dependencies into KForge manually.
+While KForge is able to build *almost* all KDE software, there are a few exceptions. The proper build dependencies for the following software are **not** installed in KForge and attempting to build them will probably result in errors. If you really need to build these, you can install the dependencies into KForge manually.
 
 * Krita. Krita is massive, and as testing KForge requires building vast amounts of KDE software on a regular basis, the extra time that would be needed to build Krita routinely is currently believed to be too much. Additionally, there is already a dedicated Krita build environment known as Krita Devbox, which is available here: https://invent.kde.org/eoinoneill/krita-devbox
 * Kdenlive. As handy and awesome as Kdenlive is, it requires the installation of build dependencies that are potentially problematic due to issues invovling patents (ffmpeg being one of the biggest problems here). It is also seriously big and might be too cumbersome to build on a regular basis.

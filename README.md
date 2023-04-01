@@ -24,8 +24,8 @@ If you don't know what you're doing, or if you don't clearly understand **everyt
 
 Info that may help you to be able to use KForge effectively.
 
+* We will probably be switching over to KDE neon User Edition as the base for KForge soon. The reason is because the Developer Edition ISOs frequently fail to build, they can be buggy, you're going to get developer builds of KDE components if you choose to build them anyway, and the current change to Qt 6/Plasma 6 in KDE means that things are way to unstable to make a good development environment. Hopefully you'll see a build of KForge sometime in the near future.
 * KDE Neon Developer Edition has been rebased onto Ubuntu 22.04, which uses a newer version of GCC. It is no longer necessary to set the GCC version when running compilation commands.
-* There's finally an updated KForge appliance! Between a bunch of work and a problem with my Internet, I've not updated this in a while, but it's finally happened. Thanks for your patience!
 * There is a bug in KForgePlasmaSetup.sh - libkscreen must be built before kscreen can be built, however the code doesn't necessarily make this happen. Please use `./buildMod libkscreen` before attempting to use `./buildAll` to avoid this problem.
 * The screen locker is **not** disabled by default. Occasionally, the screen of the VM will lock. Sometimes during or after a kdesrc-build run, you will find that the screen can't be unlocked thereafter. To get around this, switch to a TTY using VirtualBox's virtual keyboard (or an similar feature of your virtualization software if not using VirtualBox), log in, and use loginctl to unlock the screen. Screen locking is planned to be disabled by default in a later release of KForge.
 
